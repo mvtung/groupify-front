@@ -3,32 +3,25 @@ import React from 'react';
 
 import LoginForm from '../components/LoginForm';
 import { Link } from 'react-router-dom';
+import styles from '../../../styles/LoginPage.module.scss'
 
 function LoginPage() {
 
   return (
-    <div className="login-page">
+    <div className={styles.loginPage}>
       <h1>Login</h1>
 
       <LoginForm />
 
       <p>
-        Don't have an account? <Link to="/register">Register</Link>
+        Don't have an account? <Link to="/register" className={styles.link}>Register</Link>
       </p>
 
       <p>
-        Forgot password? <Link to="/forgot-password">Reset Password</Link>
+        Forgot password? <Link to="/forgot-password" className={styles.link}>Reset Password</Link>
       </p>
     </div>
   );
-}
-
-// Optional CSS module
-const styles = {
-  loginPage: `
-    width: 400px;
-    margin: 0 auto;
-  `
 }
 
 export default LoginPage;

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-
+import styles from '../../../styles/LoginForm.module.scss'
 interface ILoginForm {
   username: string;
   password: string;
@@ -27,18 +27,19 @@ const LoginForm: React.FC = () => {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
-      <label>
+    <form onSubmit={handleSubmit} className={styles.form}>
+      <label className={styles.label}>
         Username
         <input
           type="text"
           name="username"
           value={form.username}
           onChange={handleChange}
+          className={styles.input}
         />
       </label>
 
-      <label>
+      <label className={styles.label}>
         Password
         <input
           type="password"
@@ -48,7 +49,7 @@ const LoginForm: React.FC = () => {
         />
       </label>
 
-      <button type="submit">Submit</button>
+      <button type="submit" className={styles.button}>LOGIN</button>
     </form>
   );
 }

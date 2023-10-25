@@ -3,25 +3,25 @@ import React from 'react';
 
 import { Link } from 'react-router-dom';
 import styles from '../../../styles/LoginPage.module.scss'
-import SignUpForm from '../components/SignUpForm';
+import ForgotPasswordForm from '../components/ForgotPasswordForm';
 
-function SignUpPage() {
+function ForgotPasswordPage() {
 
   return (
     <div className={styles.loginPage}>
-      <h1>Sign Up</h1>
+      <h1>Reset password</h1>
 
-      <SignUpForm />
+      <ForgotPasswordForm />
 
       <p>
         You have an account? <Link to="/login" className={styles.link}>Login</Link>
       </p>
 
       <p>
-        Forgot password? <Link to="/forgot-password" className={styles.link}>Reset Password</Link>
+      Don't have an account? <Link to="/sign-up" className={styles.link}>Sign Up</Link>
       </p>
     </div>
   );
 }
 
-export default SignUpPage;
+export default ForgotPasswordPage;

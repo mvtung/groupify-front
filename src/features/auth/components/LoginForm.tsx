@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import styles from '../../../styles/LoginForm.module.scss'
+import { login } from '../../../services/api';
+
 interface ILoginForm {
   username: string;
   password: string;
@@ -12,9 +14,15 @@ const LoginForm: React.FC = () => {
     password: ''
   });
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // submit form logic
+    try {
+      const response = await login(form.username, form.password);
+      console.log(response);
+      
+    } catch (err) {
+      console.error(err);
+    }
   }
 
   const handleChange = (
@@ -29,7 +37,7 @@ const LoginForm: React.FC = () => {
   return (
     <form onSubmit={handleSubmit} className={styles.form}>
       <label className={styles.label}>
-        Username
+        Username:
         <input
           type="text"
           name="username"
@@ -40,7 +48,7 @@ const LoginForm: React.FC = () => {
       </label>
 
       <label className={styles.label}>
-        Password
+        Password:
         <input
           type="password"
           name="password"

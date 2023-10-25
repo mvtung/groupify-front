@@ -14,7 +14,7 @@ function LoginPage() {
       <LoginForm />
 
       <p>
-        Don't have an account? <Link to="/register" className={styles.link}>Register</Link>
+        Don't have an account? <Link to="/sign-up" className={styles.link}>Register</Link>
       </p>
 
       <p>

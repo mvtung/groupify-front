@@ -21,7 +21,6 @@ export const login = async (usernameOrEmail: string, password: string) => {
     });
 
     return response.data;
-
   } catch (error) {
     console.log(error);
   }
@@ -37,7 +36,16 @@ export const register = async (form: object) => {
     });
 
     return response.data;
+  } catch (error) {
+    console.log(error);
+  }
+}
 
+export const logout = async () => {
+  try {
+    const response = await api.get(`/api/auth/logout`);
+
+    return response.data;
   } catch (error) {
     console.log(error);
   }

@@ -1,0 +1,14 @@
+.homePage {
+  height: 100vh;
+  width: 100%;
+  display: flex;
+
+  .leftMenu {
+    width: 30%;
+  }
+
+  main {
+    flex-grow: 1;
+    background: #170f23;
+  }
+}

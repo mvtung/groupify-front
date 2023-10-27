@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import styles from '../../../styles/LoginForm.module.scss'
+import styles from '../../../styles/LoginForm.module.scss';
 import { register } from '../../../services/api';
 
 interface IRegisterForm {

@@ -1,15 +1,45 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import styles from '../../../styles/LoginForm.module.scss'
+import { register } from '../../../services/api';
 
-function Register() {
+interface IRegisterForm {
+  username: string;
+  email: string;
+  password: string;
+  rePassword: string
+  role: string;
+}
 
-  const [email, setEmail] = useState('');
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
-  const [rePassword, setRePassword] = useState('');
+const Register: React.FC = () => {
 
-  const handleSubmit = (e: { preventDefault: () => void; }) => {
+  const [form, setForm] = useState<IRegisterForm>({
+    username: '',
+    email: '',
+    password: '',
+    rePassword: '',
+    role: 'ROLE_ADMIN',
+  });
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    console.log(form);
+
+    try {
+      const response = await register(form);
+      console.log(response);
+
+    } catch (err) {
+      console.error(err);
+    }
+  }
+
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+  ) => {
+    setForm({
+      ...form,
+      [e.target.name]: e.target.value
+    });
   }
 
   return (
@@ -18,8 +48,9 @@ function Register() {
         Email *:
         <input
           type="text"
-          value={email}
-          onChange={e => setEmail(e.target.value)}
+          name='email'
+          value={form.email}
+          onChange={handleChange}
           className={styles.input}
         />
       </label>
@@ -28,8 +59,9 @@ function Register() {
         Username *:
         <input
           type="text"
-          value={username}
-          onChange={e => setUsername(e.target.value)}
+          name='username'
+          value={form.username}
+          onChange={handleChange}
           className={styles.input}
         />
       </label>
@@ -38,8 +70,9 @@ function Register() {
         Password *:
         <input
           type="password"
-          value={password}
-          onChange={e => setPassword(e.target.value)}
+          name='password'
+          value={form.password}
+          onChange={handleChange}
           className={styles.input}
         />
       </label>
@@ -48,10 +81,22 @@ function Register() {
         Re-Password *:
         <input
           type="password"
-          value={rePassword}
-          onChange={e => setRePassword(e.target.value)}
+          name='rePassword'
+          value={form.rePassword}
+          onChange={handleChange}
           className={styles.input}
         />
+      </label>
+
+      <label className={styles.label}>
+        Role *:
+        <select name="role"
+          value={form.role}
+          onChange={handleChange}
+        >
+          <option value="ROLE_ADMIN">ADMIN</option>
+          <option value="ROLE_USER">USER</option>
+        </select>
       </label>
 
       <button type="submit" className={styles.button}>REGISTER</button>

@@ -12,6 +12,12 @@
   justify-content: space-between;
   align-items: center;
   font-weight: bold;
+
+  select {
+    outline: #9b4de0a1;
+    height: 30px;
+    border-radius: 5px;
+  }
 }
 
 input {

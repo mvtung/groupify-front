@@ -9,7 +9,6 @@ export const resetPassword = (email: string) => {
 }
 
 export const login = async (usernameOrEmail: string, password: string) => {
-
   try {
     const response = await api.post('/api/auth/login', {
       usernameOrEmail,
@@ -26,5 +25,20 @@ export const login = async (usernameOrEmail: string, password: string) => {
   } catch (error) {
     console.log(error);
   }
+}
 
+export const register = async (form: object) => {
+  try {
+    const response = await api.post('/api/auth/register', form, {
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      withCredentials: true
+    });
+
+    return response.data;
+
+  } catch (error) {
+    console.log(error);
+  }
 }

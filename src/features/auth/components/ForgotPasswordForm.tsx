@@ -1,14 +1,13 @@
 import { useState } from 'react';
 import styles from '../../../styles/LoginForm.module.scss'
+import { resetPassword } from '../../../services/api';
 
 function ForgotPassword() {
 
   const [email, setEmail] = useState('');
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-
-    // Gọi API reset password
     try {
       await resetPassword(email);
       //...
@@ -36,7 +35,3 @@ function ForgotPassword() {
 }
 
 export default ForgotPassword;
-
-function resetPassword(email: string) {
-  throw new Error('Function not implemented.');
-}

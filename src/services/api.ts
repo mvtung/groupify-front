@@ -4,10 +4,6 @@ const api = axios.create({
   baseURL: 'http://localhost:8191'
 });
 
-export const resetPassword = (email: string) => {
-  return api.post('/password/reset', { email });
-}
-
 export const login = async (usernameOrEmail: string, password: string) => {
   try {
     const response = await api.post('/api/auth/login', {
@@ -44,6 +40,21 @@ export const register = async (form: object) => {
 export const logout = async () => {
   try {
     const response = await api.get(`/api/auth/logout`);
+
+    return response.data;
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+export const resetPassword = async (email: string) => {
+  try {
+    const response = await api.post('/api/auth/reset-password', { email }, {
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      withCredentials: true
+    });
 
     return response.data;
   } catch (error) {

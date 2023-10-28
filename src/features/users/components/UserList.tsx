@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleChevronDown, faPenToSquare, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { deleteUser, getUsers } from '../../../services/api';
 import { parseISO, format } from 'date-fns'
+import { useNavigate } from 'react-router-dom';
 
 interface IUser {
   id: string;
@@ -24,15 +25,21 @@ interface UsersProps {
 
 const TableGroups: React.FC<UsersProps> = ({ setModal }) => {
   const [users, setUsers] = useState<IUser[]>([])
-
+  const navigate = useNavigate();
   useEffect(() => {
     const fetchData = async () => {
       const result = await getUsers();
+      console.log(result);
+      if (result.status == 403) {
+        navigate('/login');
+        return
+      }
+
       setUsers(result);
     }
 
     fetchData();
-  }, [])
+  }, [navigate])
 
   const delUser = async (id: string) => {
     try {
@@ -47,7 +54,7 @@ const TableGroups: React.FC<UsersProps> = ({ setModal }) => {
   return (
     <div className={styles.tableGroups}>
       <div className={styles.blockTitle}>
-        <h2>Groups List</h2>
+        <h2>Users List</h2>
       </div>
       <div className={styles.headerTable}>
         <div className={styles.email}>Email</div>

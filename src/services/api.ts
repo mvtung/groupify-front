@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import axios from 'axios';
 
 const api = axios.create({
@@ -17,8 +18,8 @@ export const login = async (usernameOrEmail: string, password: string) => {
     });
 
     return response.data;
-  } catch (error) {
-    console.log(error);
+  } catch (error: any) {
+    return error.response;
   }
 }
 
@@ -32,8 +33,8 @@ export const register = async (form: object) => {
     });
 
     return response.data;
-  } catch (error) {
-    console.log(error);
+  } catch (error: any) {
+    return error.response;
   }
 }
 
@@ -42,8 +43,8 @@ export const logout = async () => {
     const response = await api.get(`/api/auth/logout`, { withCredentials: true });
 
     return response.data;
-  } catch (error) {
-    console.log(error);
+  } catch (error: any) {
+    return error.response;
   }
 }
 
@@ -57,8 +58,8 @@ export const resetPassword = async (email: string) => {
     });
 
     return response.data;
-  } catch (error) {
-    console.log(error);
+  } catch (error: any) {
+    return error.response;
   }
 }
 
@@ -67,8 +68,8 @@ export const getGroup = async () => {
     const response = await api.get(`/api/groups`, { withCredentials: true });
 
     return response.data;
-  } catch (error) {
-    console.log(error);
+  } catch (error: any) {
+    return error.response;
   }
 }
 
@@ -77,8 +78,9 @@ export const getUsers = async () => {
     const response = await api.get(`/api/users`, { withCredentials: true });
 
     return response.data;
-  } catch (error) {
-    console.log(error);
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  } catch (error: any) {
+    return error.response;
   }
 }
 
@@ -87,8 +89,8 @@ export const getGroupUser = async (groupId: string) => {
     const response = await api.get(`/api/user-groups/groups/${groupId}`, { withCredentials: true });
 
     return response.data;
-  } catch (error) {
-    console.log(error);
+  } catch (error: any) {
+    return error.response;
   }
 }
 
@@ -102,8 +104,8 @@ export const createGroup = async (form: object) => {
     });
 
     return response.data;
-  } catch (error) {
-    console.log(error);
+  } catch (error: any) {
+    return error.response;
   }
 }
 
@@ -119,8 +121,8 @@ export const updateUser = async (userId: string, form: object) => {
     });
 
     return response.data;
-  } catch (error) {
-    console.log(error);
+  } catch (error: any) {
+    return error.response;
   }
 }
 
@@ -134,8 +136,8 @@ export const deleteGroup = async (id: string) => {
     });
 
     return response.data;
-  } catch (error) {
-    console.log(error);
+  } catch (error: any) {
+    return error.response;
   }
 }
 
@@ -149,7 +151,7 @@ export const deleteUser = async (id: string) => {
     });
 
     return response.data;
-  } catch (error) {
-    console.log(error);
+  } catch (error: any) {
+    return error.response;
   }
 }

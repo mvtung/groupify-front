@@ -5,6 +5,7 @@ import { faCircleChevronDown, faPenToSquare, faPlus, faTrash } from '@fortawesom
 import { deleteGroup, getGroup } from '../../../services/api';
 import { parseISO, format } from 'date-fns'
 import GroupDetail from './GroupDetail';
+import { useNavigate } from 'react-router-dom';
 
 interface IGroup {
   id: string;
@@ -22,20 +23,27 @@ interface TableGroupsProps {
 
 const TableGroups: React.FC<TableGroupsProps> = ({ setModal }) => {
   const [groups, setGroups] = useState<IGroup[]>([])
-
+  const navigate = useNavigate();
   useEffect(() => {
     const fetchData = async () => {
       const result = await getGroup();
+      if (result.status == 403) {
+        navigate('/login');
+        return
+      }
       setGroups(result);
     }
 
     fetchData();
-  }, [])
+  }, [navigate])
 
   const delGroup = async (id: string) => {
     try {
       const response = await deleteGroup(id);
-      console.log(response);
+      if (response.status == 403) {
+        navigate('/login');
+        return
+      }
       location.reload();
 
     } catch (err) {

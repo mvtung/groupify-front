@@ -3,6 +3,7 @@ import styles from '../../../styles/ModalForm.module.scss';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleXmark } from "@fortawesome/free-solid-svg-icons";
 import { createGroup } from "../../../services/api";
+import { useNavigate } from "react-router-dom";
 
 interface IGroup {
   groupName: string;
@@ -19,7 +20,7 @@ const ModalGroup: React.FC<HandleCloseProps> = ({ handleClose }) => {
     groupName: '',
     description: ''
   });
-
+  const navigate = useNavigate();
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
@@ -33,7 +34,10 @@ const ModalGroup: React.FC<HandleCloseProps> = ({ handleClose }) => {
     e.preventDefault();
     try {
       const response = await createGroup(form);
-      console.log(response);
+      if (response.status == 403) {
+        navigate('/login');
+        return
+      }
       location.reload();
     } catch (err) {
       console.error(err);

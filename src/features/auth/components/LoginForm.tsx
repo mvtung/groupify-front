@@ -20,6 +20,11 @@ const LoginForm: React.FC = () => {
     try {
       const response = await login(form.username, form.password);
       console.log(response);
+      
+      if (response.status == 403) {
+        navigate('/login');
+        return
+      }
       navigate('/groups');
     } catch (err) {
       console.error(err);

@@ -10,7 +10,6 @@ import { useNavigate } from 'react-router-dom';
 const HeaderMain: React.FC = () => {
   const navigate = useNavigate();
   const logoutF = async () => {
-    console.log('call');
 
     try {
       const response = await logout();

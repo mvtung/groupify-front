@@ -39,7 +39,7 @@ export const register = async (form: object) => {
 
 export const logout = async () => {
   try {
-    const response = await api.get(`/api/auth/logout`);
+    const response = await api.get(`/api/auth/logout`, { withCredentials: true });
 
     return response.data;
   } catch (error) {
@@ -55,6 +55,16 @@ export const resetPassword = async (email: string) => {
       },
       withCredentials: true
     });
+
+    return response.data;
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+export const getGroup = async () => {
+  try {
+    const response = await api.get(`/api/groups`, { withCredentials: true });
 
     return response.data;
   } catch (error) {

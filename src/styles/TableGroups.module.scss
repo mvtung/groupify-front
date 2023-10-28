@@ -1,0 +1,44 @@
+.tableGroups {
+  padding: 30px;
+  color: white;
+
+  .headerTable,
+  .bodyTale {
+    display: flex;
+    width: 100%;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.7);
+    padding: 10px 0;
+    font-weight: bold;
+
+    .nameGroup {
+      flex-grow: 1;
+    }
+
+    .createdAt {
+      width: 20%;
+      text-align: center;
+    }
+
+    .action {
+      width: 15%;
+      text-align: center;
+    }
+  }
+
+  .bodyTale {
+    font-weight: unset;
+    height: 60px;
+    align-items: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+
+    .action {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+    }
+
+    .action * {
+      cursor: pointer;
+    }
+  }
+}

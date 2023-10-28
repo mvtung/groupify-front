@@ -6,7 +6,6 @@ import { faUser } from '@fortawesome/free-solid-svg-icons';
 import { faHouse } from '@fortawesome/free-solid-svg-icons';
 import { faUserGroup } from '@fortawesome/free-solid-svg-icons';
 import { faGear } from '@fortawesome/free-solid-svg-icons';
-import { faPeopleRoof } from '@fortawesome/free-solid-svg-icons';
 
 const LeftMenu: React.FC = () => {
   const navigate = useNavigate();
@@ -17,8 +16,7 @@ const LeftMenu: React.FC = () => {
   return (
     <aside className={styles.leftMenu}>
       <div className={styles.blockLogo}>
-        <FontAwesomeIcon icon={faPeopleRoof} style={{color: "#ffffff",}} className={styles.logo} />
-        <h1>GROUPIFY</h1>
+        <h3>GROUPIFY</h3>
       </div>
       <ul className={styles.blockUl}>
         <li onClick={() => handleClick('/')}>

@@ -24,7 +24,7 @@ const ModalGroup: React.FC<HandleCloseProps> = ({ handleClose, user }) => {
   });
 
   const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
   ) => {
     setForm({
       ...form,
@@ -65,7 +65,9 @@ const ModalGroup: React.FC<HandleCloseProps> = ({ handleClose, user }) => {
 
           <label className={styles.label}>
             Role *:
-            <select name="role">
+            <select name="role"
+              value={form.role}
+              onChange={handleChange}>
               <option value="ROLE_ADMIN">ROLE_ADMIN</option>
               <option value="ROLE_USER">ROLE_USER</option>
             </select>

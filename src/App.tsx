@@ -17,6 +17,7 @@ function App() {
         <Route path="/groups" element={<GroupsPage />} />
         <Route path="/users" element={<UsersPage />} />
         <Route path="/login" element={<LoginPage />} />
+        <Route path="/setting" element={<HomePage />} />
         <Route path="/sign-up" element={<SignUpPage />} />
         <Route path="/forgot-password" element={<ForgotPasswordPage />} />
       </Routes>

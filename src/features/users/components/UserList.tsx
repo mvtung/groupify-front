@@ -1,7 +1,7 @@
 import React, { Dispatch, Fragment, SetStateAction, useEffect, useState } from 'react';
 import styles from '../../../styles/TableGroups.module.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCircleChevronDown, faPenToSquare, faTrash } from '@fortawesome/free-solid-svg-icons';
+import { faPenToSquare, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { deleteUser, getUsers } from '../../../services/api';
 import { parseISO, format } from 'date-fns'
 import { useNavigate } from 'react-router-dom';
@@ -66,14 +66,14 @@ const TableGroups: React.FC<UsersProps> = ({ setModal }) => {
       {users?.map(user => (
         <Fragment key={user.id}>
           <div key={user.id} className={styles.bodyTale}>
-            <div className={styles.iconDropdown}><FontAwesomeIcon icon={faCircleChevronDown} rotation={270} style={{ color: "#ffffff", }} /></div>
+            {/* <div className={styles.iconDropdown}><FontAwesomeIcon icon={faCircleChevronDown} rotation={270} style={{ color: "#ffffff", }} /></div> */}
             <div className={styles.email}>{user.email}</div>
             <div className={styles.username}>{user.username}</div>
             <div className={styles.role}>{user.role}</div>
             <div className={styles.createdAt}>{format(parseISO(user.createdAt), 'yyyy-MM-dd')}</div>
             <div className={styles.action}>
               <div className={styles.iconEdit} onClick={() => { setModal({ isOpen: true, user: user }) }}>
-                <FontAwesomeIcon icon={faPenToSquare} style={{ color: "#ffffff", display: "none" }} />
+                <FontAwesomeIcon icon={faPenToSquare} style={{ color: "#ffffff", }} />
               </div>
               <div className={styles.iconDel} onClick={() => delUser(user.id)}>
                 <FontAwesomeIcon icon={faTrash} style={{ color: "#ff0000", }} />

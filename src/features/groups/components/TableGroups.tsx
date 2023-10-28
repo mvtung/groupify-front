@@ -2,7 +2,7 @@ import React, { Dispatch, Fragment, SetStateAction, useEffect, useState } from '
 import styles from '../../../styles/TableGroups.module.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleChevronDown, faPenToSquare, faPlus, faTrash } from '@fortawesome/free-solid-svg-icons';
-import { getGroup } from '../../../services/api';
+import { deleteGroup, getGroup } from '../../../services/api';
 import { parseISO, format } from 'date-fns'
 import GroupDetail from './GroupDetail';
 
@@ -32,6 +32,16 @@ const TableGroups: React.FC<TableGroupsProps> = ({ setModal }) => {
     fetchData();
   }, [])
 
+  const delGroup = async (id: string) => {
+    try {
+      const response = await deleteGroup(id);
+      console.log(response);
+
+    } catch (err) {
+      console.error(err);
+    }
+  }
+
   return (
     <div className={styles.tableGroups}>
       <div className={styles.blockTitle}>
@@ -55,7 +65,7 @@ const TableGroups: React.FC<TableGroupsProps> = ({ setModal }) => {
               <div className={styles.iconEdit}>
                 <FontAwesomeIcon icon={faPenToSquare} style={{ color: "#ffffff", }} />
               </div>
-              <div className={styles.iconDel}>
+              <div className={styles.iconDel} onClick={() => delGroup(group.id)}>
                 <FontAwesomeIcon icon={faTrash} style={{ color: "#ff0000", }} />
               </div>
             </div>

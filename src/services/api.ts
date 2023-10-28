@@ -72,9 +72,34 @@ export const getGroup = async () => {
   }
 }
 
+export const getGroupUser = async (groupId: string) => {
+  try {
+    const response = await api.get(`/api/user-groups/groups/${groupId}`, { withCredentials: true });
+
+    return response.data;
+  } catch (error) {
+    console.log(error);
+  }
+}
+
 export const createGroup = async (form: object) => {
   try {
     const response = await api.post('/api/groups', form, {
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      withCredentials: true
+    });
+
+    return response.data;
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+export const deleteGroup = async (id: string) => {
+  try {
+    const response = await api.delete(`/api/groups/${id}`, {
       headers: {
         'Content-Type': 'application/json'
       },

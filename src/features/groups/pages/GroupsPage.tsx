@@ -1,14 +1,30 @@
 import LeftMenu from "../../common/pages/LeftMenu"
 import styles from '../../../styles/HomePage.module.scss';
-import MainContentGroups from "../components/MainContentGroups";
-import React from "react";
+import React, { useState } from "react";
+import ModalGroup from "../components/ModalGroup";
+import HeaderMain from "../../home/components/HeaderMain";
+import TableGroups from "../components/TableGroups";
+
+interface IModalState {
+  isOpen: boolean;
+}
 
 const GroupsPage: React.FC = () => {
-  
+  const [modal, setModal] = useState<IModalState>({
+    isOpen: false
+  });
+
+  const handleClose = () => {
+    setModal({ isOpen: false });
+  }
   return (
     <div className={styles.homePage}>
       <LeftMenu />
-      <MainContentGroups />
+      <main>
+        <HeaderMain />
+        <TableGroups setModal={setModal} />
+      </main>
+      {modal.isOpen && <ModalGroup handleClose={handleClose} />}
     </div>
   );
 }

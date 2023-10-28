@@ -71,3 +71,18 @@ export const getGroup = async () => {
     console.log(error);
   }
 }
+
+export const createGroup = async (form: object) => {
+  try {
+    const response = await api.post('/api/groups', form, {
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      withCredentials: true
+    });
+
+    return response.data;
+  } catch (error) {
+    console.log(error);
+  }
+}

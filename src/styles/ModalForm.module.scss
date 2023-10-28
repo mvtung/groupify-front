@@ -1,0 +1,72 @@
+.modalBlock {
+  position: fixed;
+  height: 100vh;
+  width: 100vw;
+  background: rgba(0, 0, 0, 0.5);
+
+
+  .modalInner {
+    max-width: 1000px;
+    display: flex;
+    flex-direction: column;
+    background-color: #2a213a;
+    width: 80%;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    padding: 20px;
+    border-radius: 10px;
+    justify-content: flex-start;
+    color: white;
+
+    .closeModal {
+      height: 40px;
+      padding: 5px 0;
+
+      svg {
+        float: right;
+        height: 100%;
+        opacity: 0.5;
+        cursor: pointer;
+
+        &:hover {
+          opacity: 1;
+        }
+      }
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+
+      label {
+        margin-bottom: 20px;
+      }
+
+      input {
+        max-width: 100%;
+        margin-top: 10px;
+      }
+
+      textarea {
+        margin-top: 10px;
+        outline: unset;
+        width: 100%;
+        border-radius: 5px;
+
+        &:focus {
+          box-shadow: 0 0 0 3px #9b4de0a1;
+        }
+      }
+
+      .button {
+        opacity: 0.5;
+
+        &:hover {
+          opacity: 1;
+        }
+      }
+    }
+  }
+}

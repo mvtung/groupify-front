@@ -1,17 +1,48 @@
 .tableGroups {
   padding: 30px;
   color: white;
+  max-width: 1000px;
+  margin: 0 auto;
+
+  .blockTitle {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    svg {
+      max-width: 25px;
+      cursor: pointer;
+      width: 100%;
+      height: 100%;
+      opacity: 0.5;
+
+      &:hover {
+        opacity: 1;
+      }
+    }
+  }
 
   .headerTable,
   .bodyTale {
     display: flex;
     width: 100%;
     border-bottom: 1px solid rgba(255, 255, 255, 0.7);
-    padding: 10px 0;
+    padding: 5px 0;
     font-weight: bold;
+
+    .iconDropdown {
+      cursor: pointer;
+      opacity: 0.5;
+
+      &:hover {
+        opacity: 1;
+      }
+    }
 
     .nameGroup {
       flex-grow: 1;
+      cursor: pointer;
+      margin-left: 10px;
     }
 
     .createdAt {
@@ -35,7 +66,18 @@
       display: flex;
       gap: 20px;
       justify-content: center;
+
+      .iconEdit,
+      .iconDel {
+        opacity: 0.5;
+      }
+
+      .iconEdit:hover,
+      .iconDel:hover {
+        opacity: 1;
+      }
     }
+
 
     .action * {
       cursor: pointer;

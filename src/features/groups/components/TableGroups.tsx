@@ -16,6 +16,7 @@ interface IGroup {
 
 interface IModalState {
   isOpen: boolean;
+  group: IGroup;
 }
 interface TableGroupsProps {
   setModal: Dispatch<SetStateAction<IModalState>>;
@@ -55,7 +56,16 @@ const TableGroups: React.FC<TableGroupsProps> = ({ setModal }) => {
     <div className={styles.tableGroups}>
       <div className={styles.blockTitle}>
         <h2>Groups List</h2>
-        <div onClick={() => { setModal({ isOpen: true }) }}>
+        <div onClick={() => {
+          setModal({
+            isOpen: true, group: {
+              id: '',
+              groupName: '',
+              description: '',
+              createdAt: ''
+            }
+          })
+        }}>
           <FontAwesomeIcon icon={faPlus} style={{ color: "#ffffff", }} />
         </div>
       </div>
@@ -71,7 +81,7 @@ const TableGroups: React.FC<TableGroupsProps> = ({ setModal }) => {
             <div className={styles.nameGroup}>{group.groupName}</div>
             <div className={styles.createdAt}>{format(parseISO(group.createdAt), 'yyyy-MM-dd')}</div>
             <div className={styles.action}>
-              <div className={styles.iconEdit}>
+              <div className={styles.iconEdit} onClick={() => { setModal({ isOpen: true, group: group }) }}>
                 <FontAwesomeIcon icon={faPenToSquare} style={{ color: "#ffffff", }} />
               </div>
               <div className={styles.iconDel} onClick={() => delGroup(group.id)}>

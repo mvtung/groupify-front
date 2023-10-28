@@ -2,24 +2,28 @@ import React, { useState } from "react";
 import styles from '../../../styles/ModalForm.module.scss';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleXmark } from "@fortawesome/free-solid-svg-icons";
-import { createGroup } from "../../../services/api";
+import { createGroup, updateGroup } from "../../../services/api";
 import { useNavigate } from "react-router-dom";
 
 interface IGroup {
+  id: string;
   groupName: string;
   description: string;
 }
 
 interface HandleCloseProps {
   handleClose: () => void;
+  group: IGroup;
 }
 
-const ModalGroup: React.FC<HandleCloseProps> = ({ handleClose }) => {
+const ModalGroup: React.FC<HandleCloseProps> = ({ handleClose, group }) => {
 
   const [form, setForm] = useState<IGroup>({
-    groupName: '',
-    description: ''
+    id: group.id,
+    groupName: group.groupName,
+    description: group.description
   });
+
   const navigate = useNavigate();
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -33,7 +37,7 @@ const ModalGroup: React.FC<HandleCloseProps> = ({ handleClose }) => {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
-      const response = await createGroup(form);
+      const response = group.id ? await updateGroup(group.id, form) : await createGroup(form);
       if (response.status == 403) {
         navigate('/login');
         return

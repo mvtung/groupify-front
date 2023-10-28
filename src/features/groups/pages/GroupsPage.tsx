@@ -7,15 +7,34 @@ import TableGroups from "../components/TableGroups";
 
 interface IModalState {
   isOpen: boolean;
+  group: IGroup;
+}
+
+interface IGroup {
+  id: string;
+  groupName: string;
+  description: string;
+  createdAt: string;
 }
 
 const GroupsPage: React.FC = () => {
   const [modal, setModal] = useState<IModalState>({
-    isOpen: false
+    isOpen: false,
+    group: {
+      id: "",
+      groupName: "",
+      description: "",
+      createdAt: ""
+    }
   });
 
   const handleClose = () => {
-    setModal({ isOpen: false });
+    setModal({ isOpen: false, group:{
+      id: "",
+      groupName: "",
+      description: "",
+      createdAt: ""
+    } });
   }
   return (
     <div className={styles.homePage}>
@@ -24,7 +43,7 @@ const GroupsPage: React.FC = () => {
         <HeaderMain />
         <TableGroups setModal={setModal} />
       </main>
-      {modal.isOpen && <ModalGroup handleClose={handleClose} />}
+      {modal.isOpen && <ModalGroup handleClose={handleClose} group={modal.group}/>}
     </div>
   );
 }

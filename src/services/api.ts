@@ -109,10 +109,23 @@ export const createGroup = async (form: object) => {
   }
 }
 
+export const updateGroup = async (groupId: string, form: object) => {
+  try {
+    const response = await api.put(`/api/groups/${groupId}`, form, {
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      withCredentials: true
+    });
+
+    return response.data;
+  } catch (error: any) {
+    return error.response;
+  }
+}
+
 export const updateUser = async (userId: string, form: object) => {
   try {
-    console.log(userId, form);
-
     const response = await api.put(`/api/users/${userId}`, form, {
       headers: {
         'Content-Type': 'application/json'

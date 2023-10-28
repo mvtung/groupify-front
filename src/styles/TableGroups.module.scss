@@ -45,6 +45,20 @@
       margin-left: 10px;
     }
 
+    .username,
+    .email {
+      width: 25%;
+      // text-align: center;
+    }
+
+    .email {
+      margin-left: 10px;
+    }
+
+    .role {
+      width: 15%;
+    }
+
     .createdAt {
       width: 20%;
       text-align: center;

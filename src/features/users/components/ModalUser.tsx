@@ -2,22 +2,25 @@ import React, { useState } from "react";
 import styles from '../../../styles/ModalForm.module.scss';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleXmark } from "@fortawesome/free-solid-svg-icons";
-import { createGroup } from "../../../services/api";
+import { updateUser } from "../../../services/api";
 
-interface IGroup {
-  groupName: string;
-  description: string;
+interface IUser {
+  id: string;
+  username: string;
+  role: string;
 }
 
 interface HandleCloseProps {
   handleClose: () => void;
+  user: IUser;
 }
 
-const ModalGroup: React.FC<HandleCloseProps> = ({ handleClose }) => {
+const ModalGroup: React.FC<HandleCloseProps> = ({ handleClose, user }) => {
 
-  const [form, setForm] = useState<IGroup>({
-    groupName: '',
-    description: ''
+  const [form, setForm] = useState<IUser>({
+    id: user.id,
+    username: user.username,
+    role: user.role
   });
 
   const handleChange = (
@@ -32,9 +35,10 @@ const ModalGroup: React.FC<HandleCloseProps> = ({ handleClose }) => {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
-      const response = await createGroup(form);
+      const response = await updateUser(user.id, form);
       console.log(response);
       location.reload();
+
     } catch (err) {
       console.error(err);
     }
@@ -46,30 +50,29 @@ const ModalGroup: React.FC<HandleCloseProps> = ({ handleClose }) => {
         <div className={styles.closeModal} onClick={handleClose}>
           <FontAwesomeIcon icon={faCircleXmark} style={{ color: "#ffffff", }} />
         </div>
-        <h1 className="text-center">Create Group</h1>
+        <h1 className="text-center">Update User</h1>
         <form onSubmit={handleSubmit} className={styles.form}>
           <label className={styles.label}>
-            Group Name *:
+            Username *:
             <input
               type="text"
-              name="groupName"
-              value={form.groupName}
+              name="username"
+              value={form.username}
               onChange={handleChange}
               className={styles.input}
             />
           </label>
 
           <label className={styles.label}>
-            Description *:
-            <textarea
-              name="description"
-              value={form.description}
-              onChange={handleChange}
-              rows={5}
-            ></textarea>
+            Role *:
+            <select name="role">
+              <option value="ROLE_ADMIN">ROLE_ADMIN</option>
+              <option value="ROLE_USER">ROLE_USER</option>
+            </select>
+
           </label>
 
-          <button type="submit" className={styles.button}>CREATE</button>
+          <button type="submit" className={styles.button}>UPDATE</button>
         </form>
       </div>
     </div>

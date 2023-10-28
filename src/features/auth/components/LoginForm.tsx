@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import styles from '../../../styles/LoginForm.module.scss'
 import { login } from '../../../services/api';
+import { useNavigate } from 'react-router-dom';
 
 interface ILoginForm {
   username: string;
@@ -8,7 +9,7 @@ interface ILoginForm {
 }
 
 const LoginForm: React.FC = () => {
-
+  const navigate = useNavigate();
   const [form, setForm] = useState<ILoginForm>({
     username: '',
     password: ''
@@ -19,7 +20,7 @@ const LoginForm: React.FC = () => {
     try {
       const response = await login(form.username, form.password);
       console.log(response);
-      
+      navigate('/groups');
     } catch (err) {
       console.error(err);
     }

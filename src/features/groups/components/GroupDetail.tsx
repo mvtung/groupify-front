@@ -20,7 +20,6 @@ const GroupDetail: React.FC<GroupDetailProps> = ({ group }) => {
   useEffect(() => {
     const fetchData = async () => {
       const result = await getGroupUser(group.id);
-
       setGroups(result);
     }
 

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import styles from '../../../styles/LoginForm.module.scss';
 import { register } from '../../../services/api';
+import { useNavigate } from 'react-router-dom';
 
 interface IRegisterForm {
   username: string;
@@ -11,7 +12,7 @@ interface IRegisterForm {
 }
 
 const Register: React.FC = () => {
-
+  const navigate = useNavigate();
   const [form, setForm] = useState<IRegisterForm>({
     username: '',
     email: '',
@@ -22,12 +23,11 @@ const Register: React.FC = () => {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log(form);
 
     try {
       const response = await register(form);
       console.log(response);
-
+      navigate('/login');
     } catch (err) {
       console.error(err);
     }

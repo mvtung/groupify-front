@@ -7,6 +7,7 @@ import SignUpPage from './features/auth/pages/SignUpPage';
 import ForgotPasswordPage from './features/auth/pages/ForgotPasswordPage';
 import HomePage from './features/home/pages/HomePage';
 import GroupsPage from './features/groups/pages/GroupsPage';
+import UsersPage from './features/users/pages/UsersPage';
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/groups" element={<GroupsPage />} />
+        <Route path="/users" element={<UsersPage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/sign-up" element={<SignUpPage />} />
         <Route path="/forgot-password" element={<ForgotPasswordPage />} />

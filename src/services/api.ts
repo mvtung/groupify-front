@@ -72,6 +72,16 @@ export const getGroup = async () => {
   }
 }
 
+export const getUsers = async () => {
+  try {
+    const response = await api.get(`/api/users`, { withCredentials: true });
+
+    return response.data;
+  } catch (error) {
+    console.log(error);
+  }
+}
+
 export const getGroupUser = async (groupId: string) => {
   try {
     const response = await api.get(`/api/user-groups/groups/${groupId}`, { withCredentials: true });
@@ -97,9 +107,41 @@ export const createGroup = async (form: object) => {
   }
 }
 
+export const updateUser = async (userId: string, form: object) => {
+  try {
+    console.log(userId, form);
+
+    const response = await api.put(`/api/users/${userId}`, form, {
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      withCredentials: true
+    });
+
+    return response.data;
+  } catch (error) {
+    console.log(error);
+  }
+}
+
 export const deleteGroup = async (id: string) => {
   try {
     const response = await api.delete(`/api/groups/${id}`, {
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      withCredentials: true
+    });
+
+    return response.data;
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+export const deleteUser = async (id: string) => {
+  try {
+    const response = await api.delete(`/api/users/${id}`, {
       headers: {
         'Content-Type': 'application/json'
       },

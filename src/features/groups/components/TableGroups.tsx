@@ -36,6 +36,7 @@ const TableGroups: React.FC<TableGroupsProps> = ({ setModal }) => {
     try {
       const response = await deleteGroup(id);
       console.log(response);
+      location.reload();
 
     } catch (err) {
       console.error(err);
@@ -55,7 +56,7 @@ const TableGroups: React.FC<TableGroupsProps> = ({ setModal }) => {
         <div className={styles.createdAt}>Created At</div>
         <div className={styles.action}>Action</div>
       </div>
-      {groups.map(group => (
+      {groups?.map(group => (
         <Fragment key={group.id}>
           <div key={group.id} className={styles.bodyTale}>
             <div className={styles.iconDropdown}><FontAwesomeIcon icon={faCircleChevronDown} rotation={270} style={{ color: "#ffffff", }} /></div>
